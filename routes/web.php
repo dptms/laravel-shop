@@ -14,5 +14,7 @@
 Route::get('/', 'PagesController@root')->name('root');
 
 Route::get('test', function () {
-    
+
 })->name('app.test');
+
+Auth::routes();
