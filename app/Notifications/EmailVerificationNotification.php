@@ -36,8 +36,8 @@ class EmailVerificationNotification extends Notification implements ShouldQueue
     {
         // 生成随机字符串
         $token = str_random(16);
-        // 存入缓存 1800s
-        cache(['email_verification_' . $notifiable->email => $token], 1800);
+        // 存入缓存 30 分钟
+        cache(['email_verification_' . $notifiable->email => $token], 30);
         // 邮件按钮跳转地址
         $url = route('email_verify_notice.verify', ['email' => $notifiable->email, 'token' => $token]);
 

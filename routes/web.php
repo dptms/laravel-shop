@@ -27,7 +27,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/email_verify_notice/verify','EmailVerificationController@verify')->name('email_verify_notice.verify');
     // 邮箱验证通过的路由
     Route::group(['middleware' => 'email_verified'], function () {
-
+        // 用户收货地址列表
+        Route::get('user_addresses','UserAddressesController@index')->name('user_addresses.index');
     });
 });
 
