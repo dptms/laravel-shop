@@ -113,7 +113,7 @@ return [
      */
     'operation_log' => [
 
-        'enable' => true,
+        'enable' => false,
 
         /*
          * 不记操作日志的路由
