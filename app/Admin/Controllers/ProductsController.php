@@ -91,7 +91,7 @@ class ProductsController extends Controller
             $form->text('title', '商品名称')->rules('required');
             $form->image('image', '封面图片')->rules('required|image');
             $form->editor('description', '商品描述')->rules('required');
-            $form->radio('on_sale', '上架')->options(['1' => '是', '2' => '否'])->default('0');
+            $form->radio('on_sale', '上架')->options(['1' => '是', '0' => '否'])->default('0');
             $form->hasMany('skus', 'SKU 列表', function (Form\NestedForm $form) {
                 $form->text('title', 'SKU 名称')->rules('required');
                 $form->text('description', 'SKU 描述')->rules('required');
