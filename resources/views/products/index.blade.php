@@ -7,6 +7,21 @@
         <div class="col-lg-10 col-lg-offset-1">
             <div class="panel panel-default">
                 <div class="panel-body">
+                    <div class="row">
+                        <form action="{{ route('products.index') }}" class="form-inline search-form">
+                            <input type="text" class="form-control input-sm" name="search" placeholder="搜索">
+                            <button class="btn btn-primary btn-sm">搜索</button>
+                            <select name="order" class="form-control input-sm pull-right">
+                                <option value="">排序方式</option>
+                                <option value="price_asc">价格从低到高</option>
+                                <option value="price_desc">价格从高到低</option>
+                                <option value="sold_count_asc">销量从低到高</option>
+                                <option value="sold_count_desc">销量从高到低</option>
+                                <option value="rating_asc">评分从低到高</option>
+                                <option value="rating_desc">评分从高到低</option>
+                            </select>
+                        </form>
+                    </div>
                     <div class="row products-list">
                         @foreach($products as $product)
                             <div class="col-xs-3 product-item">
@@ -35,10 +50,24 @@
                         @endforeach
                     </div>
                     <div class="pull-right">
-                        {{ $products->links() }}
+                        {{ $products->appends($filters)->links() }}
                     </div>
                 </div>
             </div>
         </div>
     </div>
 @endsection
+
+@section('scriptAfterJs')
+    <script>
+        var filters = {!! json_encode($filters) !!};
+        $(function () {
+            $('.search-form input[name=search]').val(filters.search);
+            $('.search-form select[name=order]').val(filters.order);
+
+            $('.search-form select[name=order]').on('change', function () {
+                $('.search-form').submit();
+            });
+        })
+    </script>
+@endSection

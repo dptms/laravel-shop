@@ -15,7 +15,7 @@ class ProductsSeeder extends Seeder
         $products = factory(\App\Models\Product::class, 30)->create();
         foreach ($products as $product) {
             // 创建 3 个 sku，并且每个 sku 的 'product_id' 字段都设为当前循环的商品 id
-            $skus = factory(\App\Models\ProductSku::class)->create(['product_id' => $product->id]);
+            $skus = factory(\App\Models\ProductSku::class, 3)->create(['product_id' => $product->id]);
             $product->update(['price' => $skus->min('price')]);
         }
     }
