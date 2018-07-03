@@ -11,10 +11,6 @@
 |
 */
 
-// 首页
-Route::redirect('/', '/products')->name('root');
-Route::get('products', 'ProductsController@index')->name('products.index');
-Route::get('products/{product}', 'ProductsController@show')->name('products.show');
 // 权限路由
 Auth::routes();
 
@@ -44,8 +40,15 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('products/{product}/favorite','ProductsController@favor')->name('products.favor');
         // 取消收藏
         Route::delete('products/{product}/favorite','ProductsController@disfavor')->name('products.disfavor');
+        // 用户收藏列表
+        Route::get('products/favorites','ProductsController@favorites')->name('products.favorites');
     });
 });
+
+// 首页
+Route::redirect('/', '/products')->name('root');
+Route::get('products', 'ProductsController@index')->name('products.index');
+Route::get('products/{product}', 'ProductsController@show')->name('products.show');
 
 Route::get('test', function () {
 })->name('app.test');
