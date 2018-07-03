@@ -37,13 +37,17 @@ Route::group(['middleware' => 'auth'], function () {
         // 用户删除收货地址
         Route::delete('user_addresses/{user_address}', 'UserAddressesController@destroy')->name('user_addresses.destroy');
         // 收藏商品
-        Route::post('products/{product}/favorite','ProductsController@favor')->name('products.favor');
+        Route::post('products/{product}/favorite', 'ProductsController@favor')->name('products.favor');
         // 取消收藏
-        Route::delete('products/{product}/favorite','ProductsController@disfavor')->name('products.disfavor');
+        Route::delete('products/{product}/favorite', 'ProductsController@disfavor')->name('products.disfavor');
         // 用户收藏列表
-        Route::get('products/favorites','ProductsController@favorites')->name('products.favorites');
+        Route::get('products/favorites', 'ProductsController@favorites')->name('products.favorites');
         // 添加购物车
-        Route::post('cart','CartController@add')->name('cart.add');
+        Route::post('cart', 'CartController@add')->name('cart.add');
+        // 购物车列表
+        Route::get('cart', 'CartController@index')->name('cart.index');
+        // 移除购物车
+        Route::delete('cart/{sku}', 'CartController@remove')->name('cart.remove');
     });
 });
 
