@@ -1,0 +1,32 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class OrderItem extends Model
+{
+    protected $fillable = [
+        'amount',
+        'price',
+        'rating',
+        'review',
+        'review_at',
+    ];
+
+    protected $casts = [
+        'review_at',
+    ];
+
+    public $timestamps = false;
+
+    public function product()
+    {
+        return $this->belongsTo(Product::class);
+    }
+
+    public function order()
+    {
+        return $this->belongsTo(Order::class);
+    }
+}
