@@ -152,7 +152,7 @@
                         if (error.response.status === 422) {
                             // http 状态码为 422 代表用户输入校验失败
                             var html = '<div>';
-                            _.each(errors.response.data.errors, function (errors) {
+                            _.each(error.response.data.errors, function (errors) {
                                 _.each(errors, function (error) {
                                     html += error + '<br>'
                                 })
