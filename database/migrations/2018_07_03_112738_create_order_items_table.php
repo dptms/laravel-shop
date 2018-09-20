@@ -21,7 +21,7 @@ class CreateOrderItemsTable extends Migration
             $table->unsignedInteger('amount')->comment('数量');
             $table->decimal('price',10,2)->comment('价格');
             $table->unsignedInteger('rating')->nullable()->comment('用户打分');
-            $table->text('review')->comment('用户评价');
+            $table->text('review')->nullable()->comment('用户评价');
             $table->timestamp('reviewed_at')->nullable()->comment('评论时间');
 
             $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');

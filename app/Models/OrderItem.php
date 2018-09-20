@@ -14,7 +14,7 @@ class OrderItem extends Model
         'review_at',
     ];
 
-    protected $casts = [
+    protected $dates = [
         'review_at',
     ];
 
@@ -23,6 +23,11 @@ class OrderItem extends Model
     public function product()
     {
         return $this->belongsTo(Product::class);
+    }
+
+    public function productSku()
+    {
+        return $this->belongsTo(ProductSku::class);
     }
 
     public function order()
