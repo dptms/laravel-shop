@@ -172,7 +172,7 @@ return [
         /*
          * Package Service Providers...
          */
-
+        \App\Providers\PayServiceProvider::class,
         /*
          * Application Service Providers...
          */
