@@ -51,9 +51,13 @@ Route::group(['middleware' => 'auth'], function () {
         // 下单
         Route::post('orders', 'OrdersController@store')->name('orders.store');
         // 订单列表
-        Route::get('orders','OrdersController@index')->name('orders.index');
+        Route::get('orders', 'OrdersController@index')->name('orders.index');
         // 订单详情
-        Route::get('orders/{order}','OrdersController@show')->name('orders.show');
+        Route::get('orders/{order}', 'OrdersController@show')->name('orders.show');
+        // 订单支付页面
+        Route::get('payment/{order}/alipay', 'PaymentController@payByAlipay')->name('payment.alipay');
+        // 支付前端回调
+        Route::get('payment/alipay/return', 'PaymentController@alipayReturn')->name('payment.alipay.return');
     });
 });
 
@@ -61,6 +65,9 @@ Route::group(['middleware' => 'auth'], function () {
 Route::redirect('/', '/products')->name('root');
 Route::get('products', 'ProductsController@index')->name('products.index');
 Route::get('products/{product}', 'ProductsController@show')->name('products.show');
+
+// 支付后端回调
+Route::post('payment/alipay/notify', 'PaymentController@alipayNotify')->name('payment.alipay.notify');
 
 Route::get('test', function () {
 })->name('app.test');
