@@ -135,7 +135,7 @@
                     }
                     var $input = $(this).find('input[name=amount]');
                     // 如果用户将数量设为 0 或者不是一个数字，则也跳过
-                    if ($input.val() == 0 || isNaN($input.val())){
+                    if ($input.val() == 0 || isNaN($input.val())) {
                         return;
                     }
                     // 把 sku id 和数量存入请求参数数组中
@@ -148,6 +148,9 @@
                 axios.post('{{ route('orders.store') }}', req)
                     .then(function (response) {
                         swal('订单提交成功', '', 'success')
+                            .then(function () {
+                                location.href = '/orders/' + response.data.id
+                            })
                     }, function (error) {
                         if (error.response.status === 422) {
                             // http 状态码为 422 代表用户输入校验失败
