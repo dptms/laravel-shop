@@ -15,7 +15,7 @@ class OrderItem extends Model
     ];
 
     protected $dates = [
-        'review_at',
+        'reviewed_at',
     ];
 
     public $timestamps = false;
